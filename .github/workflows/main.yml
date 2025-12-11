@@ -1,0 +1,26 @@
+name: maven-file
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+
+  my-test:
+    runs-on: ubuntu-latest
+
+    steps:
+
+     - name: checkout
+       uses: actions/checkout@v6.0.1
+
+     - name: starting package
+       run: mvn -B package
+
+     - name: list all target files
+       run: ls -lh target/
+
+     - name: maven-test
+       run: mvn test
